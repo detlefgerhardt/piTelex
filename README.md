@@ -1,2 +1,3 @@
-This is a fork of the piTelex Python project.
+This fork is obsolet. See branch Centralex on https://github.com/fablab-wue/piTelex
+
 
