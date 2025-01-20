@@ -55,7 +55,7 @@ class TelexITelexCentralex(txDevITelexCommon.TelexITelexCommon):
         self.params = params
 
         self._centralex_address = params.get('centralex');
-        self._centralex_port = params.get('centralex_port', 49481);
+        self._centralex_port = params.get('centralex_port', 49491);
 
         self._number = int(params.get('tns_dynip_number', 0))
         if self._number < 10000 or self._number > 0xffffffff:
@@ -159,6 +159,7 @@ class TelexITelexCentralex(txDevITelexCommon.TelexITelexCommon):
                         l.warning('Could not connect to {!s}'.format(e))
                         with self._rx_lock: self._rx_buffer.append('\x1bCE')
                         self._ctx_recycle = True
+                        time.sleep(30)
                     else:
                         s.settimeout(0.2)
 
@@ -166,9 +167,14 @@ class TelexITelexCentralex(txDevITelexCommon.TelexITelexCommon):
                     data = self.socket_recv(s, 2)
                     if (data == None):
                         l.warning('Centralex CheckAuth error: {!s}'.format(e))
-                        self._ctx_st = CTX_ST.OFFLINE
-                    if (len(data) == 0):
+                        # self._ctx_st = CTX_ST.OFFLINE
+                        self._ctx_recycle = True
+                        time.sleep(30)
+                    elif (len(data) == 0):
                         # no data
+                        # self._ctx_st = CTX_ST.OFFLINE
+                        self._ctx_recycle = True
+                        time.sleep(30)
                         continue
 
                     if (data[0] == 0x82 and data[1] == 0x00):
@@ -183,6 +189,7 @@ class TelexITelexCentralex(txDevITelexCommon.TelexITelexCommon):
                         self._ctx_st = CTX_ST.OFFLINE
                         with self._rx_lock: self._rx_buffer.append('\x1bCE')
                         self._ctx_recycle = True
+                        time.sleep(120)
 
                 elif self._ctx_st == CTX_ST.STANDBY:
                     t = time.time()

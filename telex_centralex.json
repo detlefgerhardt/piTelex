@@ -100,7 +100,7 @@
     # incoming connections.
     # "centralex":      Specifies the Centralex Server to use (host name or ip address).
     #                   Standard Centralex host name is "tlnserv2.teleprinter.net".
-    # "centralex_port": Standard Centralex port is 49491.
+    # "centralex_port": Standard Centralex port is 49491 (optinal)
     # To use the Centralex Server your number must be set to dynamic IP update on the server.
 
     # Module type "i-Telex"
@@ -108,13 +108,11 @@
     "i-Telex": {
       "type": "i-Telex",
       "enable": true,
+
       # "port": 2342,
-      # "public_port": 2342,
-      # "local_port": 2342,
-      "tns_srv": ["tlnserv.teleprinter.net", "tlnserv2.teleprinter.net", "tlnserv3.teleprinter.net"],
-      "tns_port": 11811,
       "centralex": "tlnserv2.teleprinter.net",
-      "centralex_port": 49491,
+      # "centralex_port": 49491,
+
       # WARNING
       # Setting tns-dynip-number to anything except 0 will enable dynamic IP
       # updates with i-Telex TNS (Teilnehmerserver, Subscriber Server).
