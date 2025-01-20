@@ -1,3 +1,3 @@
-This fork is obsolet. See branch Centralex on https://github.com/fablab-wue/piTelex
+This fork is obsolete. See branch Centralex on https://github.com/fablab-wue/piTelex
 
 
