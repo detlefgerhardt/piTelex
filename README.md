@@ -1,2 +1,2 @@
-This is a fort of the piTelex Python project.
+This is a fork of the piTelex Python project.
 
