@@ -223,8 +223,10 @@ class TelexITelexCentralex(txDevITelexCommon.TelexITelexCommon):
                         self.process_connection(s, True, False)
                         # self.disconnect_client()
                         with self._rx_lock: self._rx_buffer.append('\x1bST')
+                        self._printer_running = False
                         self.send_end_with_reason(s, 'nc');
                         self._ctx_recycle = True
+                        time.sleep(2)
 
             s.close()
 
