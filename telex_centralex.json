@@ -109,9 +109,10 @@
       "type": "i-Telex",
       "enable": true,
       # "port": 2342,
-      "public_port": 2342,
-      "local_port": 2342,
-      "centralex": "itelex.srvdns.de",
+      # "public_port": 2342,
+      # "local_port": 2342,
+      "tns_srv": ["tlnserv.teleprinter.net", "tlnserv2.teleprinter.net", "tlnserv3.teleprinter.net"],
+      "tns_port": 11811,
       "centralex": "tlnserv2.teleprinter.net",
       "centralex_port": 49491,
       # WARNING
@@ -125,7 +126,7 @@
       # - you've chosen dynamic IP update and told i-Telex administrators so, and
       # - you've set your TNS pin properly.
       "tns_dynip_number": 0,
-      "tns_pin": 1234
+      "tns_pin": 12345
     },
 
 
@@ -134,7 +135,7 @@
     "log": {
       "type": "log",
       "enable": true,
-      "filename": "./log/piTelex.log"
+      "filename": "./piTelex.log"
     },
 
     ###########################################################################
@@ -148,10 +149,10 @@
 
   ###########################################################################
 
-  "wru_id": "123456 test d",
-  "wru_replace_always": true,
+  "wru_id": "12345 dummy d",
+  "wru_replace_always": false,
   "dial_timeout": 0,
-  "continue_with_no_printer": true,
-  "errorlog_path": "./log",
+  "continue_with_no_printer": false,
+  "errorlog_path": "./",
   "welcome_msg": true	#Prints out a ed1000 style timestamp on connection
 }

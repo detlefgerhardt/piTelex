@@ -55,7 +55,7 @@ class TelexITelexCentralex(txDevITelexCommon.TelexITelexCommon):
         self.params = params
 
         self._centralex_address = params.get('centralex');
-        self._centralex_port = params.get('centralex_port');
+        self._centralex_port = params.get('centralex_port', 49481);
 
         self._number = int(params.get('tns_dynip_number', 0))
         if self._number < 10000 or self._number > 0xffffffff:
@@ -77,7 +77,7 @@ class TelexITelexCentralex(txDevITelexCommon.TelexITelexCommon):
         TelexITelexCentralex._tns_addresses = params.get('tns_srv',['tlnserv.teleprinter.net','tlnserv2.teleprinter.net','tlnserv3.teleprinter.net'])
 
         # TODO: put this in the json file
-        self._tns_port = params.get('tns_port',11811)
+        self._tns_port = params.get('tns_port', 11811)
 
         self._block_ascii = params.get('block_ascii', True)
 
@@ -199,7 +199,7 @@ class TelexITelexCentralex(txDevITelexCommon.TelexITelexCommon):
                         l.warning('Centralex CheckAuth error')
                         self._ctx_st = CTX_ST.OFFLINE
                         with self._rx_lock: self._rx_buffer.append('\x1bCE')
-                    if (len(data) == 0):
+                    elif (len(data) == 0):
                         # no data
                         continue
 
