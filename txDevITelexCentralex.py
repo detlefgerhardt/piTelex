@@ -221,6 +221,8 @@ class TelexITelexCentralex(txDevITelexCommon.TelexITelexCommon):
                         self.send_accept_call_remote(s)
                         self._ctx_st = CTX_ST.CONNECTED
                         self.process_connection(s, True, False)
+                        # self.disconnect_client()
+                        with self._rx_lock: self._rx_buffer.append('\x1bST')
                         self.send_end_with_reason(s, 'nc');
                         self._ctx_recycle = True
 
